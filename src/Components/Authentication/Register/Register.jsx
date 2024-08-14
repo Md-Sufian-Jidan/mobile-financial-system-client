@@ -12,7 +12,15 @@ export default function Register() {
         const role = form.accountType.value;
         const password = form.password.value;
 
-        console.log({ fullName, phoneNumber, email, nid, role, password })
+        console.log({ fullName, phoneNumber, email, nid, role, password });
+
+        fetch(`${import.meta.env.VITE_API_URL}/register`, {
+            method: 'POST',
+            body: JSON.stringify(),
+            headers: {
+                'content-type' : 'application/json'
+            }
+        })
     }
     return (
         <div className="min-h-screen flex justify-center items-center">
