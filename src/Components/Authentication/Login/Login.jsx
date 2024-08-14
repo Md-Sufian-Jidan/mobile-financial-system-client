@@ -8,8 +8,22 @@ export default function Login() {
         const phoneNumber = form.phoneNumber.value;
         const password = form.password.value;
 
-        console.log({ phoneNumber, password })
-    }
+        console.log({ phoneNumber, password });
+        fetch(`${import.meta.env.VITE_API_URL}/register`, {
+            method: 'POST',
+            body: JSON.stringify(),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if (data?.success) {
+                    localStorage.setItem('access-token', data?.token);
+                }
+            });
+    };
     return (
         <div className="min-h-screen flex justify-center items-center">
             <div className="  bg-base-200 shadow-lg h-1/2 py-20 rounded-xl">

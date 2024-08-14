@@ -18,10 +18,19 @@ export default function Register() {
             method: 'POST',
             body: JSON.stringify(),
             headers: {
-                'content-type' : 'application/json'
+                'content-type': 'application/json'
             }
         })
-    }
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if (data?.success) {
+                    localStorage.setItem('access-token', data?.token);
+                }
+
+            })
+    };
+    
     return (
         <div className="min-h-screen flex justify-center items-center">
             <div className="  bg-base-200 shadow-lg h-1/2 py-10 rounded-xl">
